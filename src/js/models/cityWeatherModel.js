@@ -27,4 +27,13 @@ class CityWeatherModel {
       throw err;
     }
   }
+  async loadCityWeatherByName(city) {
+    try {
+      const data = await getJSON(`${API_URL}q=${city}&appid=${API_KEY}`);
+
+      this.weatherInfo = data;
+    } catch (err) {
+      throw err;
+    }
+  }
 }
