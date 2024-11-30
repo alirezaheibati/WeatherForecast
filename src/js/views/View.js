@@ -22,4 +22,20 @@ export default class View {
     this._parentElement.innerHTML = "";
     this._parentElement.insertAdjacentHTML("afterbegin", markup);
   }
+  /**
+   * Method to render the spinner.
+   * Call this function to show the spinner when loading data or performing other asynchronous operations.
+   */
+  static renderSpinner() {
+    document.getElementById("spinner-container").classList.remove("hidden");
+    document.getElementById("spinner-container").classList.add("flex");
+  }
+  /**
+   * Method to remove the spinner.
+   * Call this function to hide the spinner when finished loading data or performing asynchronous operations.
+   */
+  static removeSpinner() {
+    document.getElementById("spinner-container").classList.add("hidden");
+    document.getElementById("spinner-container").classList.remove("flex");
+  }
 }
