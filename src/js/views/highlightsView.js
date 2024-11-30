@@ -10,4 +10,14 @@ class HighlightsView extends View {
    * @protected
    */
   _parentElement = document.getElementById("highlights-view");
+  /**
+   * Converts a timestamp into a Date object.
+   *
+   * @param {number} timestamp - The timestamp to convert.
+   * @returns {Date} - The Date object.
+   */
+  _convertTimestamp(timestamp) {
+    return new Date(timestamp);
+  }
 }
+export const highlightsView = new HighlightsView();
