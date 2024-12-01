@@ -26,8 +26,14 @@ class SearchBoxView {
     this._parentElement.addEventListener("click", (e) => {
       const closeBtn = e.target.closest("#close-search-box");
       if (!closeBtn) return;
-      this._parentElement.classList.add("-translate-x-full");
+      this.closeSearchBox();
     });
+  }
+  /**
+   * Close the search box by adding a CSS class to the parent element.
+   */
+  closeSearchBox() {
+    this._parentElement.classList.add("-translate-x-full");
   }
 }
 export const searchBoxView = new SearchBoxView();
