@@ -14,12 +14,17 @@ class OptionsBarView {
    * This method listens for clicks on the parent element and
    * removes the class that hides the city selector container.
    */
+  constructor() {
+    this.addHandlerSliderChange();
+  }
   addHandlerSearchCity() {
     this._parentElement.addEventListener("click", (e) => {
+      const searchBtn = e.target.closest(".search-btn");
+      if (!searchBtn) return;
+
       const seaerchContainer = document.getElementById(
         "city-selector-container"
       );
-      if (!seaerchContainer) return;
       seaerchContainer.classList.remove("-translate-x-full");
     });
   }
