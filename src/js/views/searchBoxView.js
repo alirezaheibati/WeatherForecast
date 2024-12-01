@@ -35,5 +35,27 @@ class SearchBoxView {
   closeSearchBox() {
     this._parentElement.classList.add("-translate-x-full");
   }
+  /**
+   * Add an event listener to handle form submission for searching city.
+   *
+   * This method listens for form submission events on the parent element,
+   * prevents the default form submission behavior, and extracts the value
+   * from the city input field. The extracted value is then passed to the
+   * provided handler function.
+   *
+   * @param {function} handler - The function to handle the city input value.
+   */
+  addHandlerSearchCityForm(handler) {
+    this._parentElement.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const searchCityForm = e.target.closest("#city-selector-form");
+      if (!searchCityForm) return;
+
+      const cityInputValue = searchCityForm.querySelector(
+        "#city-selector-input"
+      ).value;
+      handler(cityInputValue);
+    });
+  }
 }
 export const searchBoxView = new SearchBoxView();
