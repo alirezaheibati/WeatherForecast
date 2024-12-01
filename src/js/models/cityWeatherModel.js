@@ -9,6 +9,21 @@ class CityWeatherModel {
      * Stores weather information for a city.
      */
     this.weatherInfo = {};
+    /**
+     * The units of measurement for the weather data (e.g., 'metric', 'imperial').
+     * @type {string}
+     */
+    this.units = "metric";
+    /**
+     * The name of the city.
+     * @type {string}
+     */
+    this.city = "";
+    /**
+     * An array to store the coordinates of the city [latitude, longitude].
+     * @type {Array<number>}
+     */
+    this.coords = [];
   }
   /**
    * Loads weather data for a specific city using latitude and longitude.
