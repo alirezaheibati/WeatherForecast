@@ -57,5 +57,13 @@ class SearchBoxView {
       handler(cityInputValue);
     });
   }
+  /**
+   * Shows the return button by removing the 'hidden' class from the return button container.
+   */
+  showReturnButton() {
+    this._parentElement
+      .querySelector("#return-btn-container")
+      .classList.remove("hidden");
+  }
 }
 export const searchBoxView = new SearchBoxView();
