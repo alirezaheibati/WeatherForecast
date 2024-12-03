@@ -35,5 +35,18 @@ class MapView {
   _createMapMarker(lat, lng) {
     L.marker([lat, lng]).addTo(this.map);
   }
+  /**
+   * Adds an event handler for map clicks.
+   * When the map is clicked, it creates a marker at the click location
+   * and calls the provided handler with the latitude and longitude of the click.
+   *
+   * @param {function} handler - The function to call with the latitude and longitude when the map is clicked.
+   */
+  addHandleMapClick(handler) {
+    this.map.on("click", (mapEvent) => {
+      this._createMapMarker(mapEvent.latlng.lat, mapEvent.latlng.lng);
+      handler(mapEvent.latlng.lat, mapEvent.latlng.lng);
+    });
+  }
 }
 export const mapView = new MapView();
