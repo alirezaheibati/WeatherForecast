@@ -25,5 +25,15 @@ class MapView {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.map);
   }
+  /**
+   * Creates a map marker at the specified latitude and longitude.
+   *
+   * @param {number} lat - The latitude of the marker.
+   * @param {number} lng - The longitude of the marker.
+   * @private
+   */
+  _createMapMarker(lat, lng) {
+    L.marker([lat, lng]).addTo(this.map);
+  }
 }
 export const mapView = new MapView();
