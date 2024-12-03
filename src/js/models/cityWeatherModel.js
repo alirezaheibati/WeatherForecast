@@ -38,7 +38,7 @@ class CityWeatherModel {
         `${API_URL}lat=${lat}&lon=${lon}&units=${units}&appid=${API_KEY}`
       );
 
-      this.weatherInfo = data;
+      this._setCityInfo(data);
     } catch (err) {
       throw err;
     }
@@ -49,10 +49,20 @@ class CityWeatherModel {
         `${API_URL}q=${city}&units=${units}&appid=${API_KEY}`
       );
 
-      this.weatherInfo = data;
+      this._setCityInfo(data);
     } catch (err) {
       throw err;
     }
+  }
+  /**
+   * Assign value for this class properties about city and weather of city.
+   *
+   * @param {Object} data - The data object containing all information fetched from API.
+   */
+  _setCityInfo(data) {
+    this.weatherInfo = data;
+    this.city = data.city.name;
+    this.coords = [data.city.coord.lat, data.city.coord.lon];
   }
 }
 export const cityWeatherModel = new CityWeatherModel();
