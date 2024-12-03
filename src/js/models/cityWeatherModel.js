@@ -93,5 +93,36 @@ class CityWeatherModel {
   _celsiusToFahrenheit(num) {
     return (num * 1.8 + 32).toFixed(2);
   }
+  /**
+   * Converts the weather related properties of this.watherInfo to the appropriate units.
+   * @private
+   */
+  _convertWeatherInfo() {
+    this.weatherInfo.list.forEach((element) => {
+      if (this.units === "metric") {
+        element.main.feels_like = this._fahrenheitToCelsius(
+          element.main.feels_like
+        );
+        element.main.temp = this._fahrenheitToCelsius(element.main.temp);
+        element.main.temp_max = this._fahrenheitToCelsius(
+          element.main.temp_max
+        );
+        element.main.temp_min = this._fahrenheitToCelsius(
+          element.main.temp_min
+        );
+      } else {
+        element.main.feels_like = this._celsiusToFahrenheit(
+          element.main.feels_like
+        );
+        element.main.temp = this._celsiusToFahrenheit(element.main.temp);
+        element.main.temp_max = this._celsiusToFahrenheit(
+          element.main.temp_max
+        );
+        element.main.temp_min = this._celsiusToFahrenheit(
+          element.main.temp_min
+        );
+      }
+    });
+  }
 }
 export const cityWeatherModel = new CityWeatherModel();
