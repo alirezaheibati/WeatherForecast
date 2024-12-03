@@ -32,10 +32,10 @@ class CityWeatherModel {
    * @param {number} lon - The longitude of the city.
    * @returns {Promise<void>} - A promise that resolves when the data is fetched and set.
    */
-  async loadCityWeatherByCoords(lat, lon, units = "metric") {
+  async loadCityWeatherByCoords(lat, lon) {
     try {
       const data = await getJSON(
-        `${API_URL}lat=${lat}&lon=${lon}&units=${units}&appid=${API_KEY}`
+        `${API_URL}lat=${lat}&lon=${lon}&units=${this.units}&appid=${API_KEY}`
       );
 
       this._setCityInfo(data);
@@ -43,10 +43,10 @@ class CityWeatherModel {
       throw err;
     }
   }
-  async loadCityWeatherByName(city, units = "metric") {
+  async loadCityWeatherByName(city) {
     try {
       const data = await getJSON(
-        `${API_URL}q=${city}&units=${units}&appid=${API_KEY}`
+        `${API_URL}q=${city}&units=${this.units}&appid=${API_KEY}`
       );
 
       this._setCityInfo(data);
