@@ -48,5 +48,27 @@ class OptionsBarView {
       } else return;
     });
   }
+  /**
+   * Adds an event listener to handle changes in weather unit selection.
+   *
+   * This method listens for a change event on the parent element, checks if the
+   * event target is the #unit-selector checkbox, toggles the position of the circle
+   * element to reflect the unit change, and retrieves the checkbox status.
+   *
+   * @param {Function} handler - A callback function that handles the checkbox status.
+   */
+  addHandlerUnitsChange(handler) {
+    this._parentElement.addEventListener("change", (e) => {
+      const unitsCheckBox = e.target.closest("#unit-selector");
+      if (!unitsCheckBox) return;
+      //slide unit selector circle right or left
+      const circleHandle = this._parentElement.querySelector(".circle");
+      circleHandle.classList.toggle("left-0");
+      circleHandle.classList.toggle("left-4");
+      //saves the checkbox value
+      const checkStatus = unitsCheckBox.checked;
+      handler(checkStatus);
+    });
+  }
 }
 export const optionsBarView = new OptionsBarView();
