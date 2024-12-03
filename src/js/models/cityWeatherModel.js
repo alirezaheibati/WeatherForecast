@@ -43,6 +43,11 @@ class CityWeatherModel {
       throw err;
     }
   }
+  /**
+   * Loads city weather data by city name.
+   * @param {string} city - The name of the city.
+   * @throws Will throw an error if the fetch operation fails.
+   */
   async loadCityWeatherByName(city) {
     try {
       const data = await getJSON(
