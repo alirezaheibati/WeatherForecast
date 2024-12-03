@@ -83,5 +83,15 @@ class CityWeatherModel {
   _fahrenheitToCelsius(num) {
     return ((num - 32) / 1.8).toFixed(2);
   }
+  /**
+   * Converts a temperature from Celsius to Fahrenheit.
+   *
+   * @param {number} num - The temperature in Celsius.
+   * @returns {number} - The converted temperature in Fahrenheit.
+   * @private
+   */
+  _celsiusToFahrenheit(num) {
+    return (num * 1.8 + 32).toFixed(2);
+  }
 }
 export const cityWeatherModel = new CityWeatherModel();
