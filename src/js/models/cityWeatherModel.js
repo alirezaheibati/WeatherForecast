@@ -64,5 +64,14 @@ class CityWeatherModel {
     this.city = data.city.name;
     this.coords = [data.city.coord.lat, data.city.coord.lon];
   }
+  /**
+   * Sets the weather units based on the checkbox status.
+   * @param {boolean} checkStatus - The status of the checkbox; true for imperial units, false for metric units.
+   */
+  setWeatherUnit(checkStatus) {
+    if (checkStatus) this.units = "imperial";
+    else this.units = "metric";
+    this._convertWeatherInfo();
+  }
 }
 export const cityWeatherModel = new CityWeatherModel();
