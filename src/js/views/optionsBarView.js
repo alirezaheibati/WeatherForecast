@@ -14,9 +14,6 @@ class OptionsBarView {
    * This method listens for clicks on the parent element and
    * removes the class that hides the city selector container.
    */
-  constructor() {
-    this.addHandlerSliderChange();
-  }
   addHandlerSearchCity() {
     this._parentElement.addEventListener("click", (e) => {
       const searchBtn = e.target.closest(".search-btn");
@@ -35,7 +32,7 @@ class OptionsBarView {
    * within the parent element. When a slider-circle is clicked, it updates the
    * width of all slider buttons, making the clicked one larger.
    */
-  addHandlerSliderChange() {
+  addHandlerSliderChange(handler) {
     this._parentElement.addEventListener("click", (e) => {
       if (e.target.classList.contains("slider-circle")) {
         const sliderBtns =
@@ -45,6 +42,8 @@ class OptionsBarView {
           btn.classList.add("w-3");
         });
         e.target.classList.add("w-6");
+        const slideTo = e.target.dataset.slideTo;
+        handler(slideTo);
       } else return;
     });
   }
@@ -69,6 +68,26 @@ class OptionsBarView {
       const checkStatus = unitsCheckBox.checked;
       handler(checkStatus);
     });
+  }
+  /**
+   * Sets the position of the option bar based on the specified portion.
+   * Adjusts the option bar's position to stay aligned with the corresponding portion of the container.
+   *
+   * @param {number} portion - The portion of the container to align the option bar with (1 for first portion, 2 for second portion, 3 for third portion).
+   */
+  setOptionBarPosition(portion) {
+    this._parentElement.classList.remove("left-0");
+    this._parentElement.classList.remove("left-1/3");
+    this._parentElement.classList.remove("left-2/3");
+    if (portion == 1) {
+      this._parentElement.classList.add("left-0");
+    }
+    if (portion == 2) {
+      this._parentElement.classList.add("left-1/3");
+    }
+    if (portion == 3) {
+      this._parentElement.classList.add("left-2/3");
+    }
   }
 }
 export const optionsBarView = new OptionsBarView();
