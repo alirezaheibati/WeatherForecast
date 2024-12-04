@@ -103,5 +103,17 @@ class OptionsBarView {
       }
     });
   }
+  /**
+   * Resets the position of the option bar.
+   * Removes existing position classes and sets the option bar to the initial position.
+   * Ensures the first circle is reselected.
+   */
+  resetOptionBarPosition() {
+    this._parentElement.classList.remove("left-0");
+    this._parentElement.classList.remove("left-1/3");
+    this._parentElement.classList.remove("left-2/3");
+    this._parentElement.classList.add("left-0");
+    this._reselectFirstcircle();
+  }
 }
 export const optionsBarView = new OptionsBarView();
