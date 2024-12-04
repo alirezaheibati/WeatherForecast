@@ -89,5 +89,19 @@ class OptionsBarView {
       this._parentElement.classList.add("left-2/3");
     }
   }
+  /**
+   * Reselects the first circle in the option bar.
+   * Adjusts the width of all slider circles, ensuring the first circle is visually highlighted.
+   */
+  _reselectFirstcircle() {
+    const sliderBtns = this._parentElement.querySelectorAll(".slider-circle");
+    sliderBtns.forEach((btn, idx) => {
+      btn.classList.remove("w-6");
+      btn.classList.add("w-3");
+      if (idx === 0) {
+        btn.classList.add("w-6");
+      }
+    });
+  }
 }
 export const optionsBarView = new OptionsBarView();
