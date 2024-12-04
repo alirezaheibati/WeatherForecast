@@ -41,5 +41,15 @@ class ContainerView {
       this._parentElement.classList.add("-translate-x-2/3");
     }
   }
+  /**
+   * Resets the container translation to show the first portion.
+   * Removes existing translation classes and ensures the first portion of the container is visible.
+   */
+  resetPortionView() {
+    this._parentElement.classList.remove("-translate-x-0");
+    this._parentElement.classList.remove("-translate-x-1/3");
+    this._parentElement.classList.remove("-translate-x-2/3");
+    this._parentElement.classList.add("-translate-x-0");
+  }
 }
 export const containerView = new ContainerView();
