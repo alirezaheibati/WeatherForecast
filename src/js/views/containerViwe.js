@@ -21,5 +21,25 @@ class ContainerView {
       }
     });
   }
+  /**
+   * Sets the visible portion of the container based on the specified portion.
+   * Removes existing translation classes and adds the appropriate class to show the correct portion of the container.
+   *
+   * @param {number} portion - The portion of the container to display (1 for first portion, 2 for second portion, 3 for third portion).
+   */
+  setContainerPortionToView(portion) {
+    this._parentElement.classList.remove("-translate-x-0");
+    this._parentElement.classList.remove("-translate-x-1/3");
+    this._parentElement.classList.remove("-translate-x-2/3");
+    if (portion == 1) {
+      this._parentElement.classList.add("-translate-x-0");
+    }
+    if (portion == 2) {
+      this._parentElement.classList.add("-translate-x-1/3");
+    }
+    if (portion == 3) {
+      this._parentElement.classList.add("-translate-x-2/3");
+    }
+  }
 }
 export const containerView = new ContainerView();
