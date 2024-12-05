@@ -20,7 +20,8 @@ class WeatherInfoView extends View {
     return `
       <p class="text-9xl text-center">${this._data.main.temp}&deg;</p>
             <div class="flex justify-center items-center gap-2">
-              <img src="https://openweathermap.org/img/wn/${this._data.weather[0].icon}@2x.png" alt="${this._data.weather[0].main}"> 
+              <img src="https://alirezaheibati.ir/projects/assets/weather/vector/${this._data.weather[0].icon}.png" alt="${this._data.weather[0].main}" 
+              class="w-16 h-16"> 
               <p class="text-4xl">
               ${this._data.weather[0].main}
               </p>
