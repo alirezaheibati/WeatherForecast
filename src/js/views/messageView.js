@@ -47,5 +47,18 @@ class MessageView extends View {
             </button>
           </div>`;
   }
+  /**
+   ** Adds an event handler to close the message box when the close button is clicked.
+   ** - Listens for click events on the parent element.
+   * - Checks if the clicked target has the class 'error-close-btn'.
+   * - Calls the _hideMessageBox method to hide the message box.
+   */
+  addHandleToCleseMessageBox() {
+    this._parentElement.addEventListener("click", (e) => {
+      if (e.target.classList.contains("error-close-btn")) {
+        this._hideMessageBox();
+      }
+    });
+  }
 }
 export const messageView = new MessageView();
