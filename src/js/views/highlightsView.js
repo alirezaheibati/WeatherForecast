@@ -40,11 +40,11 @@ class HighlightsView extends View {
                         <i class="fa-solid fa-snowflake"></i>
                       </div>
                     </div>
-                    <img src="https://openweathermap.org/img/wn/${
+                    <img src="https://alirezaheibati.ir/projects/assets/weather/vector/${
                       this._data.list[0].weather[0].icon
-                    }@2x.png" alt="${
+                    }.png" alt="${
       this._data.list[0].weather[0].main
-    }" class="block mx-auto bg-slate-800 rounded-full">
+    }" class="block mx-auto">
                     <p class="text-center">${
                       this._data.list[0].weather[0].main
                     }</p>
