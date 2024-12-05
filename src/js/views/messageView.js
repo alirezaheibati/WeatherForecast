@@ -10,5 +10,28 @@ class MessageView extends View {
    * @protected
    */
   _parentElement = document.getElementById("message-container");
+  /**
+   * Hides the message box by adjusting its CSS classes.
+   * - Removes the 'flex' class from the parent element.
+   * - Adds the 'hidden' class to the parent element.
+   */
+  _hideMessageBox() {
+    this._parentElement.classList.remove("flex");
+    this._parentElement.classList.add("hidden");
+  }
+  /**
+   * Shows the message box by adjusting its CSS classes.
+   * - Adds the 'flex' class from the parent element.
+   * - Removes the 'hidden' class to the parent element.
+   */
+  showMessageBox() {
+    this._parentElement.classList.remove("hidden");
+    this._parentElement.classList.add("flex");
+  }
+  /**
+   * Generates the HTML markup for the message box.
+   *
+   * @returns {string} - The generated HTML markup.
+   */
 }
 export const messageView = new MessageView();
