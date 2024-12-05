@@ -55,6 +55,7 @@ class SearchBoxView {
         "#city-selector-input"
       ).value;
       handler(cityInputValue);
+      searchCityForm.querySelector("#city-selector-input").value = "";
     });
   }
   /**
