@@ -8,6 +8,7 @@ import { optionsBarView } from "../views/optionsBarView";
 import { searchBoxView } from "../views/searchBoxView";
 import { mapView } from "../views/mapView";
 import { containerView } from "../views/containerViwe";
+import { messageView } from "../views/messageView";
 /**
  * CityWeatherController class that manages the interaction between the model and views.
  * It handles user interactions, fetches weather data, and updates the views accordingly.
@@ -30,6 +31,7 @@ export class CityWeatherController {
     containerView.addHandlerToWindowResize(
       this.resetTranslateContainer.bind(this)
     );
+    messageView.addHandleToCleseMessageBox();
   }
   /**
    * Renders all weather information using the respective views.
@@ -43,6 +45,9 @@ export class CityWeatherController {
     predictionsView.render(this.cityWeatherModel.weatherInfo);
     weatherInfoView.render(this.cityWeatherModel.weatherInfo.list[0]);
     locationInfoView.render(this.cityWeatherModel.weatherInfo.city);
+    containerView.renderBg(
+      this.cityWeatherModel.weatherInfo.list[0].weather[0].icon
+    );
   }
   /**
    * Handles a click event on the map by loading weather information for the specified coordinates.
@@ -56,16 +61,20 @@ export class CityWeatherController {
    * @param {number} lng - The longitude of the clicked location.
    */
   async handleClickOnMap(lat, lng) {
-    View.renderSpinner();
-    await this.cityWeatherModel.loadCityWeatherByCoords(
-      lat.toFixed(2),
-      lng.toFixed(2),
-      this.cityWeatherModel.units
-    );
-    this._renderAllWeatherInfo();
-    this._showSearchBoxReturnButton();
-    searchBoxView.closeSearchBox();
-    View.removeSpinner();
+    try {
+      View.renderSpinner();
+      await this.cityWeatherModel.loadCityWeatherByCoords(
+        lat.toFixed(2),
+        lng.toFixed(2),
+        this.cityWeatherModel.units
+      );
+      this._renderAllWeatherInfo();
+      this._showSearchBoxReturnButton();
+      searchBoxView.closeSearchBox();
+      View.removeSpinner();
+    } catch (err) {
+      this._manageError(err);
+    }
   }
   /**
    * Asynchronously loads the weather information for a specified city and updates the view.
@@ -78,15 +87,34 @@ export class CityWeatherController {
    * @param {string} cityName - The name of the city to load weather information for.
    */
   async loadCityWeatherByName(cityName) {
-    View.renderSpinner();
-    await this.cityWeatherModel.loadCityWeatherByName(
-      cityName,
-      this.cityWeatherModel.units
-    );
-    this._renderAllWeatherInfo();
-    this._showSearchBoxReturnButton();
-    searchBoxView.closeSearchBox();
+    try {
+      View.renderSpinner();
+      await this.cityWeatherModel.loadCityWeatherByName(
+        cityName,
+        this.cityWeatherModel.units
+      );
+      this._renderAllWeatherInfo();
+      this._showSearchBoxReturnButton();
+      searchBoxView.closeSearchBox();
+      View.removeSpinner();
+    } catch (err) {
+      this._manageError(err);
+    }
+  }
+  _manageError(err) {
     View.removeSpinner();
+    messageView.showMessageBox();
+    if (err.message === "404") {
+      messageView.render({
+        title: "City Not Found.",
+        message: "Double Check City Name And Try Again",
+      });
+    } else {
+      messageView.render({
+        title: "It's Not You, It's Me.",
+        message: "It Took too long. Try Again Minute Later.",
+      });
+    }
   }
   /**
    * Toggles the weather unit (e.g., Celsius to Fahrenheit) and updates the view.
