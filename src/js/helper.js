@@ -8,11 +8,7 @@
 const timeout = function (second) {
   return new Promise(function (_, reject) {
     setTimeout(() => {
-      reject(
-        new Error(
-          `request took too long. Request timeout after ${second} seconds.`
-        )
-      );
+      reject(new Error("500"));
     }, second * 1000);
   });
 };
@@ -28,7 +24,7 @@ export const getJSON = async function (url) {
   try {
     const res = await Promise.race([fetch(url), timeout(7)]);
     const data = await res.json();
-    if (!res.ok) throw new Error("someThing went wrong");
+    if (data.cod === "404") throw new Error("404");
     return data;
   } catch (err) {
     throw err;
