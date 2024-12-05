@@ -1,3 +1,4 @@
+import png01d from "../../assets/vector/01d.png";
 import View from "./View";
 /**
  * Represents the view for a weather predictions section.
@@ -25,11 +26,11 @@ class PredictionsView extends View {
                 class="bg-white w-[48%] xl:w-auto xl:flex-grow p-2 mb-2 rounded-lg text-center"
               >
                 <p>${this._data.list[i].weather[0].description}</p>
-                <img src="https://openweathermap.org/img/wn/${
+                <img src="https://alirezaheibati.ir/projects/assets/weather/vector/${
                   this._data.list[i].weather[0].icon
                 }.png" alt="${
         this._data.list[i].weather[0].main
-      }" class="block mx-auto">
+      }" class="block mx-auto w-20 h-20">
                 <p>temp: ${this._data.list[i].main.temp}&deg;</p>
                 <p>${this._data.list[i].dt_txt.slice(5, 16)}</p>
               </div>
