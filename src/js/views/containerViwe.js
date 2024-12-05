@@ -51,5 +51,17 @@ class ContainerView {
     this._parentElement.classList.remove("-translate-x-2/3");
     this._parentElement.classList.add("-translate-x-0");
   }
+  /**
+   * Sets the background image of the weather forecast container.
+   * - Selects the element with the class 'weather-forecast-continer'.
+   * - Sets its background image to the specified image URL.
+   *
+   * @param {string} img - The name of the image file (without extension) to be used as the background.
+   */
+  renderBg(img) {
+    this._parentElement.querySelector(
+      ".weather-forecast-continer"
+    ).style.backgroundImage = `url("https://alirezaheibati.ir/projects/assets/weather/bg/${img}.jpg")`;
+  }
 }
 export const containerView = new ContainerView();
